@@ -1,3 +1,9 @@
+/*
+        플레이어의 각 요소들을 가져오기 위해 통하는 관문입니다.
+
+        기본적인 것은 제가 작성했습니다.
+*/
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
