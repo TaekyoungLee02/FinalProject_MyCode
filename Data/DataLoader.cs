@@ -1,3 +1,9 @@
+/*
+        ë‹¨ìˆœí•˜ê²Œ Json ë°ì´í„°ë¥¼ Resources.Load() ë¡œ ë¶ˆëŸ¬ì™€ ì¸ìŠ¤í„´ìŠ¤ë¡œ ë°”ê¾¸ëŠ” í´ë˜ìŠ¤ì…ë‹ˆë‹¤.
+        
+        ì´ ë¶€ë¶„ì€ ì „ë¶€ ì œê°€ ì‘ì„±í•œ í´ë˜ìŠ¤ì…ë‹ˆë‹¤.
+*/
+
 using System.Collections.Generic;
 using System;
 using UnityEngine;
@@ -6,9 +12,9 @@ using Newtonsoft.Json;
 public class DataLoader<T> where T : DataTypeBase
 
 /*
-*  ¿ÜºÎ¿¡¼­ µ¥ÀÌÅÍ¸¦ Á÷Á¢ÀûÀ¸·Î ·ÎµåÇÏ´Â Å¬·¡½º.
+*  ì™¸ë¶€ì—ì„œ ë°ì´í„°ë¥¼ ì§ì ‘ì ìœ¼ë¡œ ë¡œë“œí•˜ëŠ” í´ë˜ìŠ¤.
 *  
-*  _loadedDataÀÇ in ´Â id, T´Â DataTypeBase¸¦ »ó¼ÓÇÏ´Â Á÷·ÄÈ­ Àü¿ë µ¥ÀÌÅÍÀÌ´Ù.
+*  _loadedDataì˜ in ëŠ” id, TëŠ” DataTypeBaseë¥¼ ìƒì†í•˜ëŠ” ì§ë ¬í™” ì „ìš© ë°ì´í„°ì´ë‹¤.
 */
 
 {

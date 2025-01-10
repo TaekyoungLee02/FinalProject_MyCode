@@ -1,3 +1,8 @@
+/*
+        간단하게 카메라 비율을 고정하는 클래스입니다.
+        전부 제가 작성했습니다.
+*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

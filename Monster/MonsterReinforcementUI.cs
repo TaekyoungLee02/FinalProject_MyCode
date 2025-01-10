@@ -1,3 +1,14 @@
+/*
+        몬스터 강화 UI 입니다.
+
+        이쯤 되니 너무 급하게 작성해서 주석조차 없는 코드가 많네요..
+
+        주석 작성을 생활화하자고 마음먹었는데도 쉽지 않은 것 같습니다.
+
+        전부 제가 작성한 부분입니다.
+*/
+
+
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -95,7 +106,7 @@ public class MonsterReinforcementUI : UserInterface
     {
         reinforcementElementUI.Check.SetActive(!reinforcementElementUI.Check.activeSelf);
 
-        // �̹� ����� ��ȭȿ����� ����, �ƴϸ� �߰�
+        // 이미 적용된 강화효과라면 삭제, 아니면 추가
         if (monsterReinforcement.HasReinforcement(monsterReinforcementElementData)) monsterReinforcement.RemoveReinforcement(monsterReinforcementElementData);
         else monsterReinforcement.AddReinforcement(monsterReinforcementElementData);
 
