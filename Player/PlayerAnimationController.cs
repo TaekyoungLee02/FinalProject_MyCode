@@ -1,12 +1,11 @@
 using System.Collections.Generic;
 using System.Text;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class PlayerAnimationController : MonoBehaviour
 {
     // 플레이어 애니메이션 컨트롤러의 애셋
-    [SerializeField] private AnimatorController animatorControllerAsset;
+    [SerializeField] private RuntimeAnimatorController animatorControllerAsset;
 
     // 애니메이션 컨트롤러의 Parameters 를 name, hash 로 가지고 있는 Dictionary
     private Dictionary<string, int> animatorParameters;
@@ -21,13 +20,14 @@ public class PlayerAnimationController : MonoBehaviour
 
         playerStateMachine = GetComponent<PlayerController>().StateMachine;
 
+        animatorParameters ??= new();
+
         InitAnimatorCondition();
         playerAnimator.enabled = true;
     }
 
     private void InitAnimatorCondition()
     {
-        InitAnimatorParameters();
         InitMoveAnimatorCondition();
         InitAttackAnimatorCondition();
     }
@@ -44,10 +44,10 @@ public class PlayerAnimationController : MonoBehaviour
         var moveState = moveStateParent.GetState<PlayerMoveState>();
         sb = new StringBuilder(move).Append("_").Append(AnimatorParameterConstants.Move);
 
-        int moveHash = animatorParameters[sb.ToString()];
+        int moveHash = GetAnimatorParameter(sb.ToString());
 
-        int playerDirectionXHash = animatorParameters[AnimatorParameterConstants.PlayerDirectionX];
-        int playerDirectionYHash = animatorParameters[AnimatorParameterConstants.PlayerDirectionY];
+        int playerDirectionXHash = GetAnimatorParameter(AnimatorParameterConstants.PlayerDirectionX);
+        int playerDirectionYHash = GetAnimatorParameter(AnimatorParameterConstants.PlayerDirectionY);
 
         moveState.OnMoveStart += (Vector2 direction) => 
         { 
@@ -68,7 +68,7 @@ public class PlayerAnimationController : MonoBehaviour
         // 넉백 State가 시작할 때와 끝날 때에 각각 애니메이션 Knockback State 가 시작하는 조건과 끝나는 조건을 달아 줌.
         var knockbackState = moveStateParent.GetState<PlayerKnockbackState>();
         sb = new StringBuilder(move).Append("_").Append(AnimatorParameterConstants.Knockback);
-        int knockbackHash = animatorParameters[sb.ToString()];
+        int knockbackHash = GetAnimatorParameter(sb.ToString());
         knockbackState.OnKnockbackStart += () => playerAnimator.SetBool(knockbackHash, true);
         knockbackState.OnKnockbackEnd += () => playerAnimator.SetBool(knockbackHash, false);
     }
@@ -77,10 +77,10 @@ public class PlayerAnimationController : MonoBehaviour
     {
         var attackState = playerStateMachine.GetState<PlayerAttackStateParent>().GetState<PlayerAttackState>();
 
-        int isAttackHash = animatorParameters[AnimatorParameterConstants.isAttack];
-        int dashSpeedHash = animatorParameters[AnimatorParameterConstants.DashSpeed];
-        int playerDirectionXHash = animatorParameters[AnimatorParameterConstants.PlayerDirectionX];
-        int playerDirectionYHash = animatorParameters[AnimatorParameterConstants.PlayerDirectionY];
+        int isAttackHash = GetAnimatorParameter(AnimatorParameterConstants.isAttack);
+        int dashSpeedHash = GetAnimatorParameter(AnimatorParameterConstants.DashSpeed);
+        int playerDirectionXHash = GetAnimatorParameter(AnimatorParameterConstants.PlayerDirectionX);
+        int playerDirectionYHash = GetAnimatorParameter(AnimatorParameterConstants.PlayerDirectionY);
 
         attackState.OnAttackStart += (float dashSpeed) =>
         {
@@ -99,25 +99,23 @@ public class PlayerAnimationController : MonoBehaviour
         attackState.OnAttackEnd += () => playerAnimator.SetBool(isAttackHash, false);
     }
 
-    private void InitAnimatorParameters()
+    private int GetAnimatorParameter(string parameter)
     {
-        animatorParameters = new();
-        var param = animatorControllerAsset.parameters;
+        if (animatorParameters.ContainsKey(parameter)) return animatorParameters[parameter];
 
-        for (int i = 0; i < param.Length; i++)
-        {
-            animatorParameters.Add(param[i].name, param[i].nameHash);
-        }
+        animatorParameters.Add(parameter, Animator.StringToHash(parameter));
+
+        return animatorParameters[parameter];
     }
 
     // Dictionary 에서 사용될 Key(Name) 값을 가진 상수들
     private class AnimatorParameterConstants
     {
+        public const string isAttack = "isAttack";
+
         public const string isMove = "isMove";
         public const string Move = "Move";
         public const string Knockback = "Knockback";
-
-        public const string isAttack = "isAttack";
 
         public const string PlayerDirectionX = "PlayerDirectionX";
         public const string PlayerDirectionY = "PlayerDirectionY";
