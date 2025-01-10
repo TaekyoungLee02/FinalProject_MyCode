@@ -1,3 +1,11 @@
+/*
+    플레이어의 행동을 StateMachine 으로 정의하는 클래스입니다.
+
+    플레이어의 State 에 따라 Update() 를 호출합니다.
+
+    전부 제가 작성했습니다.
+*/
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,7 +14,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 
     /*
-     * �÷��̾� ��Ʈ�ѷ�. �÷��̾��� �ൿ�� StateMachine���� ������
+     * 플레이어 컨트롤러. 플레이어의 행동을 StateMachine으로 통제함
      */
 
 {
@@ -26,7 +34,7 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// StateMachine �� Update() �� ȣ��.
+    /// StateMachine 의 Update() 를 호출.
     /// </summary>
     private void Update()
     {
@@ -34,7 +42,7 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// StateMachine �� FixedUpdate() �� ȣ��.
+    /// StateMachine 의 FixedUpdate() 를 호출.
     /// </summary>
     private void FixedUpdate()
     {
