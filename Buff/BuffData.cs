@@ -1,4 +1,12 @@
-﻿using Newtonsoft.Json;
+/*
+        버프의 데이터를 직렬화하는 클래스입니다.
+
+        버프 데이터는 Json 을 통해 직렬화됩니다.
+
+        이 스크립트는 전부 제가 작성했습니다.
+*/
+
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
