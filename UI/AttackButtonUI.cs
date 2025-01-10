@@ -1,3 +1,11 @@
+/*
+    각 버튼마다 이벤트를 네 개씩 넣어 두어서 각 이벤트가 발생했을 때 실행할 행위들을 정의하게 했습니다.
+
+    이 부분이 IUserInterfaceEventHandler 인터페이스입니다.
+
+    전부 제가 작성했습니다.
+*/
+
 using System;
 using System.Collections;
 using UnityEngine;
