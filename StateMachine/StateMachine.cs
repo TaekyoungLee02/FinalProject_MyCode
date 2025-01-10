@@ -1,4 +1,8 @@
-﻿public class StateMachine
+/*
+    이 StateMachine 과 BaseState 는 팀원이 작성한 부분이지만 제가 작성한 부분의 이해를 쉽게 하기 위해 같이 넣어 두었습니다.
+*/
+
+public class StateMachine
 {
     public BaseState currentState;
 
