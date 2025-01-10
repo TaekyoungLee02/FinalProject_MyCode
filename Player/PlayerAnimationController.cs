@@ -1,13 +1,19 @@
+/*
+        í”Œë ˆì´ì–´ì˜ ì• ë‹ˆë©”ì´ì…˜ì„ ê´€ë¦¬í•˜ëŠ” ì½”ë“œì…ë‹ˆë‹¤.
+
+        ì „ë¶€ ì œê°€ ì‘ì„±í–ˆìŠµë‹ˆë‹¤.
+*/
+
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
 public class PlayerAnimationController : MonoBehaviour
 {
-    // ÇÃ·¹ÀÌ¾î ¾Ö´Ï¸ŞÀÌ¼Ç ÄÁÆ®·Ñ·¯ÀÇ ¾Ö¼Â
+    // í”Œë ˆì´ì–´ ì• ë‹ˆë©”ì´ì…˜ ì»¨íŠ¸ë¡¤ëŸ¬ì˜ ì• ì…‹
     [SerializeField] private RuntimeAnimatorController animatorControllerAsset;
 
-    // ¾Ö´Ï¸ŞÀÌ¼Ç ÄÁÆ®·Ñ·¯ÀÇ Parameters ¸¦ name, hash ·Î °¡Áö°í ÀÖ´Â Dictionary
+    // ì• ë‹ˆë©”ì´ì…˜ ì»¨íŠ¸ë¡¤ëŸ¬ì˜ Parameters ë¥¼ name, hash ë¡œ ê°€ì§€ê³  ìˆëŠ” Dictionary
     private Dictionary<string, int> animatorParameters;
 
     private Animator playerAnimator;
@@ -34,13 +40,13 @@ public class PlayerAnimationController : MonoBehaviour
 
     private void InitMoveAnimatorCondition()
     {
-        // StateMachine ¿¡¼­ State°¡ ½ÃÀÛÇÒ ¶§, ³¡³¯ ¶§ ¾Ö´Ï¸ŞÀÌ¼Ç Bool ÀÌ ¹Ù²ï´Ù.
+        // StateMachine ì—ì„œ Stateê°€ ì‹œì‘í•  ë•Œ, ëë‚  ë•Œ ì• ë‹ˆë©”ì´ì…˜ Bool ì´ ë°”ë€ë‹¤.
         StringBuilder sb;
         string move = AnimatorParameterConstants.isMove;
         var moveStateParent = playerStateMachine.GetState<PlayerMoveStateParent>();
 
 
-        // ÀÌµ¿ State°¡ ½ÃÀÛÇÒ ¶§¿Í ³¡³¯ ¶§¿¡ °¢°¢ ¾Ö´Ï¸ŞÀÌ¼Ç Move State °¡ ½ÃÀÛÇÏ´Â Á¶°Ç°ú ³¡³ª´Â Á¶°ÇÀ» ´Ş¾Æ ÁÜ.
+        // ì´ë™ Stateê°€ ì‹œì‘í•  ë•Œì™€ ëë‚  ë•Œì— ê°ê° ì• ë‹ˆë©”ì´ì…˜ Move State ê°€ ì‹œì‘í•˜ëŠ” ì¡°ê±´ê³¼ ëë‚˜ëŠ” ì¡°ê±´ì„ ë‹¬ì•„ ì¤Œ.
         var moveState = moveStateParent.GetState<PlayerMoveState>();
         sb = new StringBuilder(move).Append("_").Append(AnimatorParameterConstants.Move);
 
@@ -65,7 +71,7 @@ public class PlayerAnimationController : MonoBehaviour
         moveState.OnMoveEnd += (Vector2 notUsed) => playerAnimator.SetBool(moveHash, false);
 
 
-        // ³Ë¹é State°¡ ½ÃÀÛÇÒ ¶§¿Í ³¡³¯ ¶§¿¡ °¢°¢ ¾Ö´Ï¸ŞÀÌ¼Ç Knockback State °¡ ½ÃÀÛÇÏ´Â Á¶°Ç°ú ³¡³ª´Â Á¶°ÇÀ» ´Ş¾Æ ÁÜ.
+        // ë„‰ë°± Stateê°€ ì‹œì‘í•  ë•Œì™€ ëë‚  ë•Œì— ê°ê° ì• ë‹ˆë©”ì´ì…˜ Knockback State ê°€ ì‹œì‘í•˜ëŠ” ì¡°ê±´ê³¼ ëë‚˜ëŠ” ì¡°ê±´ì„ ë‹¬ì•„ ì¤Œ.
         var knockbackState = moveStateParent.GetState<PlayerKnockbackState>();
         sb = new StringBuilder(move).Append("_").Append(AnimatorParameterConstants.Knockback);
         int knockbackHash = GetAnimatorParameter(sb.ToString());
@@ -108,7 +114,7 @@ public class PlayerAnimationController : MonoBehaviour
         return animatorParameters[parameter];
     }
 
-    // Dictionary ¿¡¼­ »ç¿ëµÉ Key(Name) °ªÀ» °¡Áø »ó¼öµé
+    // Dictionary ì—ì„œ ì‚¬ìš©ë  Key(Name) ê°’ì„ ê°€ì§„ ìƒìˆ˜ë“¤
     private class AnimatorParameterConstants
     {
         public const string isAttack = "isAttack";
