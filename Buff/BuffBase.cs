@@ -1,3 +1,15 @@
+/*
+        버프를 상속 구조로 작성해 놓은 스크립트입니다.
+
+        BuffData 클래스를 통해 초기화되고, IBuffApplier 인터페이스를 통해 캡슐화됩니다.
+
+        버프는 독립적으로 사용되지 않고, CharacterStatus 에 붙어서 사용됩니다.
+
+        CharacterStatus 의 GetBuff() 를 통해 IBuffApplier 를 전달하면 코루틴을 통해 버프 시간을 계산하는 방법입니다.
+
+        이 스크립트는 전부 제가 작성했습니다.
+*/
+
 using System;
 using System.Collections;
 using UnityEngine;
