@@ -1,3 +1,13 @@
+/*
+        게임 안의 UI를 관리하는 UI Manager 입니다.
+
+        수많은 UI들을 한번에 관리하기 위해 Dictionary 와 Enum 으로 작성했습니다.
+
+        그런데 주석 부분이 전부 깨져 있네요..
+
+        전부 제가 작성한 부분입니다.
+*/
+
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
