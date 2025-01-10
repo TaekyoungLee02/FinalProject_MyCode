@@ -1,3 +1,9 @@
+/*
+        ì™¸ë¶€ ë°ì´í„°ë¥¼ ë¶ˆëŸ¬ì˜¤ëŠ” ê²ƒì„ ê´€ë¦¬í•˜ëŠ” í´ë˜ìŠ¤ì…ë‹ˆë‹¤.
+
+        ì´ ë¶€ë¶„ì€ ì „ë¶€ ì œê°€ ì‘ì„±í–ˆìŠµë‹ˆë‹¤.
+*/
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,13 +12,13 @@ using UnityEngine;
 public class DataManager : Singleton<DataManager>
 
 /*
- *  ÀüÃ¼ ¿ÜºÎ µ¥ÀÌÅÍ¸¦ °ü¸®ÇÏ´Â Å¬·¡½º.
- *  DataTypeBase¸¦ »ó¼ÓÇÏ´Â ¿ÜºÎµ¥ÀÌÅÍ Á÷·ÄÈ­ Àü¿ë Å¬·¡½º¸¦ Á¦³Ê¸¯ Å¬·¡½º·Î LoadData¸¦ È£ÃâÇÏ¸é
- *  ±× µ¥ÀÌÅÍ¸¦ Dictionary<int, T> ÇüÅÂ·Î ¹İÈ¯ÇØ ÁØ´Ù.
+ *  ì „ì²´ ì™¸ë¶€ ë°ì´í„°ë¥¼ ê´€ë¦¬í•˜ëŠ” í´ë˜ìŠ¤.
+ *  DataTypeBaseë¥¼ ìƒì†í•˜ëŠ” ì™¸ë¶€ë°ì´í„° ì§ë ¬í™” ì „ìš© í´ë˜ìŠ¤ë¥¼ ì œë„ˆë¦­ í´ë˜ìŠ¤ë¡œ LoadDataë¥¼ í˜¸ì¶œí•˜ë©´
+ *  ê·¸ ë°ì´í„°ë¥¼ Dictionary<int, T> í˜•íƒœë¡œ ë°˜í™˜í•´ ì¤€ë‹¤.
  */
 
 {
-    // µ¥ÀÌÅÍ Á¾·ù. ½ÇÁ¦ °ªÀº ±× µ¥ÀÌÅÍÀÇ Å×ÀÌºí·Î ÇÔ.
+    // ë°ì´í„° ì¢…ë¥˜. ì‹¤ì œ ê°’ì€ ê·¸ ë°ì´í„°ì˜ í…Œì´ë¸”ë¡œ í•¨.
     public enum DATATYPE
     {
         NpcData = 30,
@@ -52,13 +58,13 @@ public class DataManager : Singleton<DataManager>
 
     public Dictionary<int, T> LoadData<T>() where T : DataTypeBase
     {
-        // Á¾·ù¿¡ µû¶ó µ¥ÀÌÅÍ ·Î´õ¸¦ ·ÎµåÇÏ±â À§ÇÑ ¸Å°³º¯¼ö°¡ ÃÊ±âÈ­µÇÁö ¾Ê¾Ò´Ù¸é ¹ß»ı
+        // ì¢…ë¥˜ì— ë”°ë¼ ë°ì´í„° ë¡œë”ë¥¼ ë¡œë“œí•˜ê¸° ìœ„í•œ ë§¤ê°œë³€ìˆ˜ê°€ ì´ˆê¸°í™”ë˜ì§€ ì•Šì•˜ë‹¤ë©´ ë°œìƒ
         if (_loaderParameters == null)
             throw new DataManagerNotInitializedException("DataManager Not Initialized");
 
         var loader = new DataLoader<T>();
 
-        // ÇØ´ç µ¥ÀÌÅÍ Å¸ÀÔÀÌ Á¸ÀçÇÏÁö ¾ÊÀ¸¸é ¹ß»ı
+        // í•´ë‹¹ ë°ì´í„° íƒ€ì…ì´ ì¡´ì¬í•˜ì§€ ì•Šìœ¼ë©´ ë°œìƒ
         if (!_loaderParameters.TryGetValue(typeof(T).Name, out string path))
             throw new ArgumentOutOfRangeException($"Loader Parameters Does Not Have {typeof(T)} Data");
 
