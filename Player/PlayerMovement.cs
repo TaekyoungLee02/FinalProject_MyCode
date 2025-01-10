@@ -1,3 +1,13 @@
+/*
+    플레이어의 이동에 관련된 코드입니다.
+
+    원래는 rigidbody 를 사용하지 않는 방향으로 가려고 했는데(오버헤드로 인한 문제 때문)
+
+    사용하는 것이 더 쉽게 문제를 해결할 수 있을 것 같아서 그렇게 하기로 결정했습니다.
+
+    전부 제가 작성했습니다.
+*/
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
