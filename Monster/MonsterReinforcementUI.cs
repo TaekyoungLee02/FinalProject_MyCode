@@ -49,7 +49,6 @@ public class MonsterReinforcementUI : UserInterface
     private ScrollRect scrollRect;
     private Transform scrollViewContent;
     private Dictionary<int, MonsterReinforcementElementData> reinforcementData;
-    private List<ReinforcementElementUI> elementList;
 
     private MonsterReinforcement monsterReinforcement;
 
@@ -85,9 +84,11 @@ public class MonsterReinforcementUI : UserInterface
 
             ui.Name.text = element.name;
             ui.Level.text = ReinforcementElementUI.LEVEL_STRING + element.reinforcementLevel.ToString();
-
+            ui.Check.SetActive(monsterReinforcement.HasReinforcement(element));
             ui.Button.onClick.AddListener(() => OnElementButtonClicked(ui, element));
         }
+
+        reinforcementLevel.text = monsterReinforcement.ReinforcementLevelSum.ToString();
     }
 
     private void OnElementButtonClicked(ReinforcementElementUI reinforcementElementUI, MonsterReinforcementElementData monsterReinforcementElementData)
